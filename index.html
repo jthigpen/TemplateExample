@@ -1,0 +1,45 @@
+<!--
+See how there is no HTML poorly encoded inside javascript variables? 
+Imagine how easy it would be for a designer to style this template html
+since it's not mangled up inside a javascript series of quotes and plusses.
+-->
+
+<html>
+<head><title>JS Templates are Powerful</title></head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.js" type="text/javascript"></script>
+<script src="./ICanHaz.js" type="text/javascript"></script>
+
+<!-- Wee bit o' JS -->
+<script type="text/javascript">
+	<!-- Renders Template, Adds html to list -->
+	var addUserToList = function (userData) {
+		var html = ich.user(userData);
+		$('.thelist').append(html);
+	};
+	
+	<!-- Calls the above method -->
+	$(function () { 
+		addUserToList({name: "James Thigpen", twitter: "jamesthigpen"});
+		addUserToList({name: "Toby McKes", twitter: "trademark"});
+	});
+</script>
+
+<body>	
+
+<!-- Template Named "User" -->
+<script id="user" type="text/html">
+  <li>
+    <p class="name">Hello I'm {{ name }}</p>
+    <p><a href="http://twitter.com/{{ twitter }}">@{{ twitter }}</a></p>
+  </li>
+</script>
+
+<!-- Static Content -->
+<div class="content">
+	<h1>The List of Awesome People</h1>
+	<ul class="thelist">
+	</ul>
+</div>
+
+</body>
+</html>
